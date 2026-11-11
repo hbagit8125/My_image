@@ -5,6 +5,7 @@ import "@fontsource/ibm-plex-sans/latin-500.css";
 import "@fontsource/ibm-plex-sans/latin-600.css";
 import "@fontsource/ibm-plex-mono/latin-400.css";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import CommandPalette from "@/components/CommandPalette";
 import { themeInitScript } from "@/components/ThemeToggle";
 import { profile } from "@/data/content";
@@ -30,7 +31,13 @@ export const metadata: Metadata = {
     title: `${profile.name} | ${profile.role}`,
     description: profile.tagline,
     type: "website",
-    images: ["/images/hashir-about.webp"],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: `${profile.name}, ${profile.role}` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${profile.name} | ${profile.role}`,
+    description: profile.tagline,
+    images: ["/og.png"],
   },
 };
 
@@ -64,6 +71,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full">
         {children}
         <CommandPalette />
+        {/* Visitor counts. Shows data once Analytics is enabled for the project in Vercel. */}
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
