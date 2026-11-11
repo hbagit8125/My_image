@@ -38,4 +38,4 @@ model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.2
 
 - What fine-tuning Mistral for billing codes taught you about data quality
 - How you wrapped a fine-tuned model into a lightweight API
-- Lessons from shipping 90+ pull requests to one React codebase
+- Lessons from building reusable component libraries for a large React codebase
