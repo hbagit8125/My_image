@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowDown, Download, Mail, MapPin } from "lucide-react";
 import { useRef } from "react";
 import Constellation from "./Constellation";
+import Typewriter from "./Typewriter";
 import { GithubIcon, LinkedinIcon } from "./icons";
 import { profile } from "@/data/content";
 
@@ -52,7 +53,7 @@ export default function Hero() {
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-glow opacity-70" />
               <span className="relative inline-flex size-2 rounded-full bg-glow" />
             </span>
-            {profile.role} at {profile.company}
+            Currently at {profile.company}
           </motion.p>
 
           <h1 className="mt-6 font-semibold text-[clamp(3rem,10.5vw,6.75rem)] leading-[0.95]">
@@ -69,9 +70,17 @@ export default function Hero() {
           </h1>
 
           <motion.p
+            custom={2.6}
+            variants={rise}
+            className="mt-5 min-h-[1.6em] font-display text-2xl font-medium text-glow sm:text-3xl"
+          >
+            <Typewriter phrases={profile.roles} />
+          </motion.p>
+
+          <motion.p
             custom={3}
             variants={rise}
-            className="mt-6 max-w-xl text-lg text-haze sm:text-xl"
+            className="mt-4 max-w-xl text-lg text-haze sm:text-xl"
           >
             {profile.tagline}
           </motion.p>
