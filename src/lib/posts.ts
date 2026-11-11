@@ -33,7 +33,6 @@ async function readPost(file: string): Promise<Post> {
 
 /** All posts, newest first. Posts are Markdown files in content/blog. */
 export async function getPosts(): Promise<PostMeta[]> {
-  "use cache";
   const files = (await fs.readdir(dir)).filter((f) => f.endsWith(".md"));
   const posts = await Promise.all(files.map(readPost));
   return posts
@@ -51,7 +50,6 @@ export async function getPosts(): Promise<PostMeta[]> {
 }
 
 export async function getPost(slug: string): Promise<Post | null> {
-  "use cache";
   if (!/^[a-z0-9-]+$/i.test(slug)) return null;
   try {
     return await readPost(`${slug}.md`);

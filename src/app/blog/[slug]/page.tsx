@@ -6,6 +6,9 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { formatDate, getPost, getPosts } from "@/lib/posts";
 
+// Only the posts that exist are valid addresses; anything else is a real 404.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return (await getPosts()).map((p) => ({ slug: p.slug }));
 }

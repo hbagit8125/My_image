@@ -8,6 +8,13 @@ export const profile = {
   role: "Machine Learning Engineer",
   company: "Tigmaminds",
   location: "Trivandrum, Kerala, India",
+  // Shown one at a time by the typing effect in the hero
+  roles: [
+    "Machine Learning Engineer",
+    "LLM Fine-tuner",
+    "Frontend Developer",
+    "Data Science Student",
+  ],
   tagline:
     "Engineer at the intersection of machine learning and modern web development.",
   email: "hashirpanwer@gmail.com",
