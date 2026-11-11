@@ -33,45 +33,48 @@
   }
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
-  background: var(--color-night);
-  color-scheme: dark;
+/* Base styles sit in the base layer so utility classes can override them. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    background: var(--color-night);
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--color-night);
+    color: var(--color-moon);
+    font-family: var(--font-sans);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: rgb(79 157 255 / 0.35);
+    color: var(--color-moon);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-glow);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* Thin scrollbar that matches the theme */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line) transparent;
+  }
 }
 
-body {
-  background: var(--color-night);
-  color: var(--color-moon);
-  font-family: var(--font-sans);
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1, h2, h3, h4 {
-  font-family: var(--font-display);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-}
-
-::selection {
-  background: rgb(79 157 255 / 0.35);
-  color: var(--color-moon);
-}
-
-:focus-visible {
-  outline: 2px solid var(--color-glow);
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-
-/* Thin scrollbar that matches the theme */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-line) transparent;
-}
-
-@utility text-glow {
+@utility glow-text {
   text-shadow: 0 0 28px rgb(140 200 255 / 0.45);
 }
 
@@ -113,3 +116,42 @@ h1, h2, h3, h4 {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Long-form text for blog posts */
+.prose-night {
+  color: var(--color-haze);
+  font-size: 1.075rem;
+  line-height: 1.8;
+  max-width: 68ch;
+}
+.prose-night > * + * { margin-top: 1.25em; }
+.prose-night h2 { color: var(--color-moon); font-size: 1.75rem; font-weight: 600; margin-top: 2.2em; }
+.prose-night h3 { color: var(--color-moon); font-size: 1.3rem; font-weight: 600; margin-top: 1.8em; }
+.prose-night strong { color: var(--color-moon); font-weight: 600; }
+.prose-night a { color: var(--color-glow); text-decoration: underline; text-underline-offset: 3px; }
+.prose-night a:hover { color: var(--color-moon); }
+.prose-night ul { list-style: disc; padding-left: 1.4em; }
+.prose-night ol { list-style: decimal; padding-left: 1.4em; }
+.prose-night li + li { margin-top: 0.45em; }
+.prose-night blockquote {
+  border-left: 2px solid var(--color-glow);
+  padding-left: 1.1em;
+  color: var(--color-moon);
+}
+.prose-night code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  padding: 0.1em 0.4em;
+  color: var(--color-moon);
+}
+.prose-night pre {
+  background: var(--color-ink);
+  border: 1px solid var(--color-line);
+  border-radius: 14px;
+  padding: 1.1em 1.25em;
+  overflow-x: auto;
+}
+.prose-night pre code { background: none; border: 0; padding: 0; }
