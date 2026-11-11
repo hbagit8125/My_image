@@ -1,14 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, Search, X } from "lucide-react";
 import Avatar from "./Avatar";
 import { OPEN_PALETTE_EVENT } from "./CommandPalette";
 import { navItems, profile } from "@/data/content";
 
+// Apple devices use the Command key for shortcuts. Read on the client only,
+// so the server render and the first client render agree.
+const noop = () => () => {};
+const readIsMac = () => /Mac|iPhone|iPad/i.test(navigator.platform || navigator.userAgent);
+
 export default function Navbar() {
+  const isMac = useSyncExternalStore(noop, readIsMac, () => false);
   const [active, setActive] = useState<string>("");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -99,7 +105,7 @@ export default function Navbar() {
             className="inline-flex h-11 items-center gap-2 rounded-full border border-line px-3.5 text-sm text-haze transition-colors hover:border-glow/60 hover:text-moon"
           >
             <Search size={16} />
-            <kbd className="hidden font-mono text-xs xl:inline">Ctrl K</kbd>
+            <kbd className="hidden font-mono text-xs xl:inline">{isMac ? "⌘K" : "Ctrl K"}</kbd>
           </button>
           <button
             type="button"
