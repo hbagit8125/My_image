@@ -17,15 +17,15 @@ export const profile = {
   github: "https://github.com/hbagit8125",
   resume: "/Hashir_Bin_Anwer_Resume.pdf",
   about: [
-    "I'm a Machine Learning Engineer at Tigmaminds in Trivandrum, where I work on healthcare AI and a data pipeline platform. My work covers both halves of an ML product: fine-tuning and deploying large language models, and building the React interfaces people use to work with them.",
-    "On the model side I've fine-tuned Mistral, LLaMA 3.1 and BERT variants, wrapped them into lightweight APIs, and deployed them with Docker. On the product side I've shipped 90+ pull requests to XORAI, a data pipeline workflow platform, including reusable component libraries, datasource integrations and an end-to-end environment promotion feature.",
+    "I'm a Machine Learning Engineer at Tigmaminds in Trivandrum, where I work on healthcare AI and an AI-native integration and orchestration platform. My work covers both halves of an ML product: fine-tuning and deploying large language models, and building the React interfaces people use to work with them.",
+    "On the model side I've fine-tuned Mistral, LLaMA 3.1 and BERT variants, wrapped them into lightweight APIs, and deployed them with Docker. On the product side I build the React and TypeScript frontend of XORAI, an AI-native integration and orchestration platform, including reusable component libraries, datasource integrations and an end-to-end environment promotion feature.",
     "Alongside work I'm pursuing a BSc in Data Science and Applications at IIT Madras, after completing my B.Tech in Artificial Intelligence and Machine Learning at SCT College of Engineering.",
   ],
 };
 
 export const stats = [
-  { value: 90, suffix: "+", label: "pull requests shipped to XORAI" },
   { value: 9, suffix: "+", label: "datasources integrated" },
+  { value: 4, suffix: "", label: "authentication flows integrated" },
   { value: 3, suffix: "", label: "production products contributed to" },
   { value: 2, suffix: "", label: "fine-tuned model versions released" },
 ];
@@ -129,10 +129,10 @@ export const experience: Job[] = [
         id: "xorai",
         name: "XORAI",
         summary:
-          "React and TypeScript frontend of a data pipeline workflow platform.",
+          "React and TypeScript frontend of an AI-native integration and orchestration platform.",
         stack: ["React", "TypeScript", "OAuth", "JWT", "HMAC"],
         points: [
-          "Built and maintained the frontend, shipping 90+ pull requests across features, UI enhancements and bug fixes.",
+          "Built and maintained the React/TypeScript frontend across features, UI enhancements and bug fixes.",
           "Built reusable component libraries (JSON Editor/Viewer, authentication forms, Smart Input Tag, Expand Editor) that improved UI consistency and reduced code duplication across the platform.",
           "Integrated 9+ datasources (Snowflake, Salesforce, AWS S3, SFTP, MySQL, Oracle, MSSQL, MongoDB, PostgreSQL) and authentication flows (OAuth, JWT, HMAC, Basic) with backend APIs, including vault-based credential handling and field-level validation.",
           "Owned the frontend of the Promotions feature for moving pipelines between environments end to end: review, flow and dependency diff, bulk promotions, external environment handling and role-based access.",
