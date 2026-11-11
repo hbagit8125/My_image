@@ -142,6 +142,15 @@ export default function Hero() {
             sizes="(min-width: 1024px) 40vw, 80vw"
             className="relative h-auto w-full mix-blend-screen [mask-image:radial-gradient(ellipse_56%_60%_at_52%_50%,black_50%,transparent_100%)]"
           />
+          {/* Soften the edges of the frame into the page */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-night to-transparent"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 left-0 w-1/5 bg-gradient-to-r from-night to-transparent"
+          />
         </motion.div>
       </div>
 
