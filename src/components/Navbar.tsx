@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Menu, Search, X } from "lucide-react";
 import Avatar from "./Avatar";
 import { OPEN_PALETTE_EVENT } from "./CommandPalette";
+import ThemeToggle from "./ThemeToggle";
 import { navItems, profile } from "@/data/content";
 
 // Apple devices use the Command key for shortcuts. Read on the client only,
@@ -98,6 +99,7 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <button
             type="button"
             onClick={() => window.dispatchEvent(new Event(OPEN_PALETTE_EVENT))}

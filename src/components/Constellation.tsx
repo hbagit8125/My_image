@@ -25,6 +25,18 @@ export default function Constellation({ className = "" }: { className?: string }
     let raf = 0;
     let visible = true;
 
+    // Colours come from the theme so the canvas follows light/dark.
+    const colors = { star: "234 240 255", link: "140 200 255" };
+    const readColors = () => {
+      const css = getComputedStyle(document.documentElement);
+      colors.star = css.getPropertyValue("--star-rgb").trim() || colors.star;
+      colors.link = css.getPropertyValue("--link-rgb").trim() || colors.link;
+    };
+    const onTheme = () => {
+      readColors();
+      draw();
+    };
+
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -61,7 +73,7 @@ export default function Constellation({ className = "" }: { className?: string }
           const my = (a.y + b.y) / 2 - pointer.y;
           const near = Math.max(0, 1 - Math.hypot(mx, my) / 220);
           const alpha = (1 - d / linkDist) * (0.22 + near * 0.6);
-          ctx.strokeStyle = `rgba(140, 200, 255, ${alpha})`;
+          ctx.strokeStyle = `rgb(${colors.link} / ${alpha})`;
           ctx.lineWidth = 0.6 + near * 0.8;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
@@ -72,8 +84,8 @@ export default function Constellation({ className = "" }: { className?: string }
 
       for (const n of nodes) {
         const near = Math.max(0, 1 - Math.hypot(n.x - pointer.x, n.y - pointer.y) / 200);
-        ctx.fillStyle = `rgba(234, 240, 255, ${0.45 + near * 0.55})`;
-        ctx.shadowColor = "rgba(140, 200, 255, 0.9)";
+        ctx.fillStyle = `rgb(${colors.star} / ${0.45 + near * 0.55})`;
+        ctx.shadowColor = `rgb(${colors.link} / 0.9)`;
         ctx.shadowBlur = 6 + near * 14;
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r + near * 1.6, 0, Math.PI * 2);
@@ -112,8 +124,10 @@ export default function Constellation({ className = "" }: { className?: string }
       if (visible && !was && !reduce) raf = requestAnimationFrame(step);
     });
 
+    readColors();
     resize();
     io.observe(canvas);
+    window.addEventListener("themechange", onTheme);
     window.addEventListener("resize", resize);
     window.addEventListener("pointermove", onMove, { passive: true });
     document.addEventListener("pointerleave", onLeave);
@@ -122,6 +136,7 @@ export default function Constellation({ className = "" }: { className?: string }
     return () => {
       cancelAnimationFrame(raf);
       io.disconnect();
+      window.removeEventListener("themechange", onTheme);
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onMove);
       document.removeEventListener("pointerleave", onLeave);
