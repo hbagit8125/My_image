@@ -130,7 +130,8 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* The photo's black night sky is blended away so the portrait and its moon sit inside the constellation. */}
+        {/* Dark theme: the photo's black night sky is blended away so the portrait and its moon sit inside the constellation.
+            Light theme: the photo is shown as a framed night scene instead. */}
         <motion.div
           style={{ y: photoY }}
           initial={{ opacity: 0, scale: 0.94 }}
@@ -149,16 +150,16 @@ export default function Hero() {
             height={1466}
             priority
             sizes="(min-width: 1024px) 40vw, 80vw"
-            className="relative h-auto w-full mix-blend-screen [mask-image:radial-gradient(ellipse_56%_60%_at_52%_50%,black_50%,transparent_100%)]"
+            className="relative h-auto w-full mix-blend-screen light:rounded-[2rem] light:mix-blend-normal light:shadow-glow-soft light:[mask-image:none] [mask-image:radial-gradient(ellipse_56%_60%_at_52%_50%,black_50%,transparent_100%)]"
           />
           {/* Soften the edges of the frame into the page */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-night to-transparent"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-night to-transparent light:hidden"
           />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 left-0 w-1/5 bg-gradient-to-r from-night to-transparent"
+            className="pointer-events-none absolute inset-y-0 left-0 w-1/5 bg-gradient-to-r from-night to-transparent light:hidden"
           />
         </motion.div>
       </div>
