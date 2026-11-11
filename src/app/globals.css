@@ -71,7 +71,7 @@ h1, h2, h3, h4 {
   scrollbar-color: var(--color-line) transparent;
 }
 
-@utility text-glow {
+@utility glow-text {
   text-shadow: 0 0 28px rgb(140 200 255 / 0.45);
 }
 
