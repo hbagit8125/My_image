@@ -17,18 +17,11 @@ export const profile = {
   github: "https://github.com/hbagit8125",
   resume: "/Hashir_Bin_Anwer_Resume.pdf",
   about: [
-    "I'm a Machine Learning Engineer at Tigmaminds in Trivandrum, where I work on healthcare AI and an AI-native integration and orchestration platform. My work covers both halves of an ML product: fine-tuning and deploying large language models, and building the React interfaces people use to work with them.",
-    "On the model side I've fine-tuned Mistral, LLaMA 3.1 and BERT variants, wrapped them into lightweight APIs, and deployed them with Docker. On the product side I build the React and TypeScript frontend of XORAI, an AI-native integration and orchestration platform, including reusable component libraries, datasource integrations and an end-to-end environment promotion feature.",
-    "Alongside work I'm pursuing a BSc in Data Science and Applications at IIT Madras, after completing my B.Tech in Artificial Intelligence and Machine Learning at SCT College of Engineering.",
+    "I'm a Machine Learning Engineer based in Trivandrum who likes working on both sides of an AI product: the models, and the interfaces people use to reach them.",
+    "I enjoy taking an idea from a notebook to something real people use. That means training and fine-tuning models, wrapping them in fast APIs, and building clean, responsive front ends around them. I care about work that holds up in production, not just in a demo.",
+    "I'm also a student for life. Alongside my job I'm pursuing a BSc in Data Science and Applications at IIT Madras, and I like passing on what I learn, whether through mentoring, organising events or writing.",
   ],
 };
-
-export const stats = [
-  { value: 9, suffix: "+", label: "datasources integrated" },
-  { value: 4, suffix: "", label: "authentication flows integrated" },
-  { value: 3, suffix: "", label: "production products contributed to" },
-  { value: 2, suffix: "", label: "fine-tuned model versions released" },
-];
 
 export type SkillGroup = { title: string; blurb: string; items: string[] };
 
@@ -123,7 +116,7 @@ export const experience: Job[] = [
     location: "Kazhakuttam, Trivandrum",
     period: "July 2024 – Present",
     intro:
-      "Contributed to three major projects: Physician Co-pilot, Billing Codes Generation, and XORAI, a data pipeline workflow system. Worked closely with medical coders and ML developers to build production-ready, scalable healthcare ML solutions.",
+      "Contributed to three major projects: Physician Co-pilot, Billing Codes Generation, and XORAI, an AI-native integration and orchestration platform. Worked closely with medical coders and ML developers to build production-ready, scalable healthcare ML solutions.",
     streams: [
       {
         id: "xorai",

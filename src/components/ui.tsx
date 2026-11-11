@@ -1,7 +1,7 @@
 "use client";
 
-import { animate, motion, useInView } from "motion/react";
-import { useEffect, useRef, type ReactNode } from "react";
+import { motion } from "motion/react";
+import type { ReactNode } from "react";
 
 /** Page section with a consistent heading and width. */
 export function Section({
@@ -68,36 +68,5 @@ export function SpotlightCard({
     >
       {children}
     </div>
-  );
-}
-
-/** Number that counts up from zero when it first becomes visible. */
-export function CountUp({ value, suffix = "" }: { value: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || !inView) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      el.textContent = `${value}${suffix}`;
-      return;
-    }
-    const controls = animate(0, value, {
-      duration: 1.6,
-      ease: [0.22, 1, 0.36, 1],
-      onUpdate: (v) => {
-        el.textContent = `${Math.round(v)}${suffix}`;
-      },
-    });
-    return () => controls.stop();
-  }, [inView, value, suffix]);
-
-  // The real value is rendered up front so it is correct without JavaScript.
-  return (
-    <span ref={ref}>
-      {value}
-      {suffix}
-    </span>
   );
 }
