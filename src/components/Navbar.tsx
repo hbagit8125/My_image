@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
 import Avatar from "./Avatar";
+import { OPEN_PALETTE_EVENT } from "./CommandPalette";
 import { navItems, profile } from "@/data/content";
 
 export default function Navbar() {
@@ -45,8 +46,10 @@ export default function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-[background,border-color,backdrop-filter] duration-300 ${
-        scrolled || open
-          ? "border-b border-line bg-night/75 backdrop-blur-xl"
+        open
+          ? "border-b border-line bg-night/95 backdrop-blur-xl"
+          : scrolled
+            ? "border-b border-line bg-night/75 backdrop-blur-xl"
           : "border-b border-transparent"
       }`}
     >
@@ -54,7 +57,11 @@ export default function Navbar() {
         aria-label="Main"
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8"
       >
-        <Link href="/#top" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+        <Link
+          href="/#top"
+          className="flex items-center gap-3"
+          onClick={() => setOpen(false)}
+        >
           <Avatar size={38} />
           <span className="font-display text-lg font-semibold tracking-tight">
             {profile.shortName}
@@ -84,16 +91,27 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <button
-          type="button"
-          className="grid size-11 place-items-center rounded-full border border-line text-moon lg:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event(OPEN_PALETTE_EVENT))}
+            aria-label="Open quick navigation"
+            className="inline-flex h-11 items-center gap-2 rounded-full border border-line px-3.5 text-sm text-haze transition-colors hover:border-glow/60 hover:text-moon"
+          >
+            <Search size={16} />
+            <kbd className="hidden font-mono text-xs xl:inline">Ctrl K</kbd>
+          </button>
+          <button
+            type="button"
+            className="grid size-11 place-items-center rounded-full border border-line text-moon lg:hidden"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
