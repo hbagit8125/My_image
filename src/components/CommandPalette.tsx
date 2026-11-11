@@ -3,8 +3,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
-import { CornerDownLeft, Download, FileText, Hash, Mail, Search } from "lucide-react";
+import { CornerDownLeft, Download, FileText, Hash, Mail, Search, SunMoon } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./icons";
+import { toggleTheme } from "./ThemeToggle";
 import { navItems, profile } from "@/data/content";
 
 type Command = { id: string; label: string; group: string; icon: React.ReactNode; run: () => void };
@@ -52,6 +53,13 @@ export default function CommandPalette() {
           a.download = "";
           a.click();
         },
+      },
+      {
+        id: "theme",
+        label: "Switch between light and dark theme",
+        group: "Actions",
+        icon: <SunMoon size={18} />,
+        run: toggleTheme,
       },
       {
         id: "email",

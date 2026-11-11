@@ -6,6 +6,7 @@ import "@fontsource/ibm-plex-sans/latin-600.css";
 import "@fontsource/ibm-plex-mono/latin-400.css";
 import "./globals.css";
 import CommandPalette from "@/components/CommandPalette";
+import { themeInitScript } from "@/components/ThemeToggle";
 import { profile } from "@/data/content";
 import { siteUrl } from "@/lib/site";
 
@@ -55,7 +56,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full">
+    // suppressHydrationWarning: the theme script may set data-theme before React loads.
+    <html lang="en" className="h-full" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="min-h-full">
         {children}
         <CommandPalette />
