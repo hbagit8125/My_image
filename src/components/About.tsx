@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { CountUp, Reveal, Section } from "./ui";
-import { profile, stats } from "@/data/content";
+import { Reveal, Section } from "./ui";
+import { profile } from "@/data/content";
 
 /** Photo that tilts gently toward the pointer. */
 function TiltPhoto() {
@@ -65,19 +65,6 @@ export default function About() {
               </Reveal>
             ))}
           </div>
-
-          <dl className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {stats.map((s, i) => (
-              <Reveal key={s.label} delay={0.1 + i * 0.08}>
-                <div className="surface h-full p-5">
-                  <dd className="font-display text-4xl font-semibold text-glow glow-text">
-                    <CountUp value={s.value} suffix={s.suffix} />
-                  </dd>
-                  <dt className="mt-2 text-sm leading-snug text-haze">{s.label}</dt>
-                </div>
-              </Reveal>
-            ))}
-          </dl>
         </div>
       </div>
     </Section>
